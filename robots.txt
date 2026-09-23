@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /takk.html
+
+Sitemap: https://qkarpuzi.github.io/V.Z-Entreprenor/sitemap.xml

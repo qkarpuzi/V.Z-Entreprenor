@@ -1,0 +1,1443 @@
+/* ==========================================================================
+   V.Z Entreprenør – stilark
+   --------------------------------------------------------------------------
+   Oppbygging:
+     1. Designtokens (farger, typografi, avstander, skygger)
+     2. Reset og grunnstiler
+     3. Layout-hjelpere
+     4. Komponenter (knapper, lister, tagger, ikoner)
+     5. Seksjoner i rekkefølge: header → hero → tillit → tjenester → prosess
+        → prosjekter → om oss → omtaler → FAQ → kontakt → footer → lysboks
+     6. Bevegelse og tilgjengelighet
+   Mobil først: grunnstilene gjelder små skjermer, og media queries bygger opp
+   (min-width) ved 480, 768, 1024 og 1280 px.
+   ========================================================================== */
+
+
+/* 1. DESIGNTOKENS
+   ========================================================================== */
+:root {
+  /* Farger hentet fra materialene i prosjektbildene:
+     kalkpuss (paper), sand, salviegrønn (moss) og terrakotta (clay). */
+  --ink: #1c1e1a;          /* Tekst og mørke flater */
+  --ink-soft: #4f5249;     /* Sekundærtekst – 7.3:1 mot paper */
+  --paper: #f5f1ea;        /* Hovedbakgrunn */
+  --paper-raised: #fbf9f5; /* Kort og skjema */
+  --sand: #ebe3d6;         /* Alternerende seksjoner */
+  --sand-deep: #d9ccb8;    /* Linjer og rammer */
+  --moss: #2f3a2e;         /* Mørk seksjon (prosess) */
+  --moss-soft: #3c4a3a;
+  --sage: #8a9677;         /* Dekor */
+  --clay: #b4532a;         /* Primær handling – hvit tekst 5.0:1 */
+  --clay-hover: #9a4522;
+  --clay-text: #9e4520;    /* Terrakotta som tekst – 5.6:1 mot paper */
+  --clay-light: #e6a07c;   /* Terrakotta på mørk bakgrunn */
+  --success: #2f6b3a;
+  --danger: #a3261b;
+  --white: #fff;
+
+  /* Typografi */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Typeskala (flytende, ca. 1.25 på mobil → 1.333 på desktop) */
+  --text-xs: 0.75rem;                                    /* 12 */
+  --text-sm: 0.875rem;                                   /* 14 */
+  --text-base: 1rem;                                     /* 16 */
+  --text-md: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem); /* 17–19 */
+  --text-lg: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);    /* 20–24 */
+  --text-xl: clamp(1.5rem, 1.3rem + 0.9vw, 2rem);        /* 24–32 */
+  --text-2xl: clamp(2rem, 1.55rem + 2vw, 3rem);          /* 32–48 */
+  --text-3xl: clamp(2.5rem, 1.7rem + 3.4vw, 4.25rem);    /* 40–68 */
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-body: 1.65;
+
+  /* Avstander: 8-punkts system. Tallet = antall 8 px (space-3 = 24 px). */
+  --space-half: 0.25rem; /* 4 */
+  --space-1: 0.5rem;     /* 8 */
+  --space-2: 1rem;       /* 16 */
+  --space-3: 1.5rem;     /* 24 */
+  --space-4: 2rem;       /* 32 */
+  --space-5: 2.5rem;     /* 40 */
+  --space-6: 3rem;       /* 48 */
+  --space-8: 4rem;       /* 64 */
+  --space-10: 5rem;      /* 80 */
+  --space-12: 6rem;      /* 96 */
+  --space-16: 8rem;      /* 128 */
+
+  --section-y: var(--space-8);
+  --gutter: var(--space-2);
+  --container: 72rem; /* 1152 */
+  --header-h: 4.5rem; /* 72 */
+
+  /* Form */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* Varme, lagdelte skygger (brun undertone i stedet for ren svart) */
+  --shadow-1: 0 1px 2px rgb(60 40 20 / 0.06), 0 2px 6px rgb(60 40 20 / 0.05);
+  --shadow-2: 0 2px 4px rgb(60 40 20 / 0.05), 0 12px 28px -8px rgb(60 40 20 / 0.18);
+  --shadow-3: 0 4px 8px rgb(60 40 20 / 0.06), 0 24px 48px -12px rgb(60 40 20 / 0.28);
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 220ms;
+
+  /* Subtil papir-/pusstekstur (SVG-støy, < 1 kB) */
+  --texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .2 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E");
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-y: var(--space-12);
+    --gutter: var(--space-4);
+    --header-h: 5rem; /* 80 */
+  }
+}
+
+@media (min-width: 1280px) {
+  :root { --section-y: var(--space-16); }
+}
+
+
+/* 2. RESET OG GRUNNSTILER
+   ========================================================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + var(--space-2));
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: var(--texture);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.is-locked { overflow: hidden; }
+
+img,
+picture,
+svg { display: block; max-width: 100%; }
+
+img { height: auto; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+ul[class],
+ol[class] { list-style: none; padding: 0; }
+
+a { color: inherit; }
+
+a:not([class]) {
+  color: var(--clay-text);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:not([class]):hover { text-decoration-thickness: 2px; }
+
+button,
+input,
+select,
+textarea { font: inherit; color: inherit; }
+
+button { cursor: pointer; }
+
+address { font-style: normal; }
+
+:focus-visible {
+  outline: 3px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+::selection { background: var(--clay); color: var(--white); }
+
+
+/* 3. LAYOUT-HJELPERE
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: var(--section-y); }
+
+.section--sand {
+  background-color: var(--sand);
+  background-image: var(--texture);
+}
+
+.section--dark {
+  background-color: var(--moss);
+  color: var(--paper);
+}
+
+.section-head {
+  max-width: 40rem;
+  margin-bottom: var(--space-6);
+}
+
+.section-title {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-2);
+}
+
+.section-lead {
+  font-size: var(--text-md);
+  color: var(--ink-soft);
+}
+
+.section--dark .section-lead { color: rgb(245 241 234 / 0.78); }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sprite { display: none; }
+
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -100px;
+  z-index: 200;
+  padding: var(--space-1) var(--space-2);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+.skip-link:focus { top: var(--space-2); }
+
+
+/* 4. KOMPONENTER
+   ========================================================================== */
+
+/* Ikoner (inline SVG via <use>) */
+.icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Overlinje med tre fargeprøver – en signaturdetalj fra malerens fargekart */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clay-text);
+}
+
+.eyebrow--light { color: var(--clay-light); }
+
+.swatches {
+  display: inline-block;
+  width: 36px;
+  height: 12px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--sage) 0 33.3%, var(--sand-deep) 0 66.6%, var(--clay) 0);
+}
+
+/* Knapper: én primær stil (terrakotta). Sekundære handlinger er tekstlenker,
+   så det aldri er tvil om hva hovedhandlingen er. */
+.btn {
+  --btn-pad-y: var(--space-2);
+  --btn-pad-x: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: 48px; /* Stort nok trykkmål på mobil */
+  padding: var(--btn-pad-y) var(--btn-pad-x);
+  border: 0;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: var(--text-base);
+  line-height: 1;
+  text-decoration: none;
+  transition: background-color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.btn .icon { transition: transform var(--dur) var(--ease); }
+
+.btn--primary {
+  background: var(--clay);
+  color: var(--white);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.15) inset, 0 6px 16px -6px rgb(180 83 42 / 0.6);
+}
+
+.btn--primary:hover {
+  background: var(--clay-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.15) inset, 0 10px 22px -8px rgb(180 83 42 / 0.7);
+}
+
+.btn--primary:hover .icon { transform: translateX(3px); }
+
+.btn--primary:active { transform: translateY(0); }
+
+.btn--sm { --btn-pad-y: var(--space-1); --btn-pad-x: var(--space-2); min-height: 40px; font-size: var(--text-sm); }
+
+.btn--lg { --btn-pad-x: var(--space-4); min-height: 56px; font-size: var(--text-md); }
+
+.btn--block { width: 100%; }
+
+.link-quiet {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: var(--text-base);
+}
+
+.link-quiet strong { color: var(--ink); border-bottom: 1px solid var(--sand-deep); transition: border-color var(--dur) var(--ease); }
+
+.link-quiet:hover strong { border-color: var(--clay); }
+
+/* Sjekkliste */
+.checklist { display: grid; gap: var(--space-1); }
+
+.checklist li { display: flex; align-items: flex-start; gap: var(--space-1); }
+
+.checklist .icon { width: 1.125rem; height: 1.125rem; margin-top: 0.2em; color: var(--success); stroke-width: 2.5; }
+
+.checklist--compact { font-size: var(--text-sm); gap: var(--space-half); }
+
+.tag {
+  display: inline-block;
+  padding: var(--space-half) var(--space-1);
+  border: 1px solid var(--sand-deep);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Plassholder-etikett: fjern class="is-placeholder" når innholdet er ekte */
+.is-placeholder { position: relative; }
+
+.is-placeholder::after {
+  content: "Plassholder";
+  position: absolute;
+  top: var(--space-1);
+  right: var(--space-1);
+  padding: 2px 6px;
+  border: 1px dashed currentColor;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+
+/* 5a. HEADER OG NAVIGASJON
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-h);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+/* Uskarp bakgrunn på et pseudo-element: backdrop-filter direkte på headeren
+   ville gjort den til «containing block» for den faste mobilmenyen. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgb(245 241 234 / 0.9);
+  backdrop-filter: saturate(1.4) blur(10px);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px);
+}
+
+.site-header.is-scrolled {
+  border-bottom-color: rgb(217 204 184 / 0.7);
+  box-shadow: 0 6px 20px -12px rgb(60 40 20 / 0.25);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  height: 100%;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand__mark { width: auto; height: 32px; }
+
+.brand__text { display: flex; flex-direction: column; line-height: 1.15; }
+
+.brand__name { font-family: var(--font-display); font-weight: 600; font-size: var(--text-md); }
+
+.brand__tag { font-size: var(--text-xs); color: var(--ink-soft); letter-spacing: 0.02em; }
+
+.brand--light .brand__tag { color: rgb(245 241 234 / 0.7); }
+
+/* Menyknapp (kun mobil/nettbrett) */
+.nav-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-right: calc(var(--space-1) * -1);
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  position: relative;
+  z-index: 120;
+}
+
+.nav-toggle .icon { width: 26px; height: 26px; }
+
+.nav-toggle:hover { background: var(--sand); }
+
+/* Mobilmeny: panel som glir inn fra høyre. visibility:hidden når lukket,
+   slik at lenkene ikke kan nås med Tab. */
+.site-nav {
+  position: fixed;
+  inset: 0 0 0 auto;
+  z-index: 110;
+  width: min(22rem, 88vw);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: calc(var(--header-h) + var(--space-2)) var(--space-3) var(--space-4);
+  background: var(--paper-raised);
+  box-shadow: var(--shadow-3);
+  overflow-y: auto;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 300ms var(--ease), visibility 0s linear 300ms;
+}
+
+.site-nav.is-open {
+  transform: none;
+  visibility: visible;
+  transition: transform 300ms var(--ease), visibility 0s;
+}
+
+.site-nav__list { display: grid; }
+
+.site-nav__list a {
+  display: block;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--sand);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-nav__list a.is-active { color: var(--clay-text); }
+
+.site-nav__actions { display: grid; gap: var(--space-2); }
+
+.site-nav__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-nav__phone .icon { width: 1.125rem; height: 1.125rem; color: var(--clay-text); }
+
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90; /* under headeren (100), som inneholder selve menypanelet */
+  background: rgb(28 30 26 / 0.45);
+  animation: fade-in 200ms var(--ease);
+}
+
+@media (min-width: 480px) {
+  .brand__mark { height: 40px; }
+}
+
+/* Desktop: vanlig horisontal meny */
+@media (min-width: 1024px) {
+  .nav-toggle,
+  .nav-backdrop { display: none; }
+
+  .site-nav {
+    position: static;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+    transform: none;
+    visibility: visible;
+    transition: none;
+  }
+
+  .site-nav__list { display: flex; gap: var(--space-3); }
+
+  .site-nav__list a {
+    position: relative;
+    padding: var(--space-1) 0;
+    border: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: color var(--dur) var(--ease);
+  }
+
+  /* Understrek som «males» inn fra venstre */
+  .site-nav__list a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 2px;
+    background: var(--clay);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .site-nav__list a:hover,
+  .site-nav__list a.is-active { color: var(--ink); }
+
+  .site-nav__list a:hover::after,
+  .site-nav__list a.is-active::after { transform: scaleX(1); }
+
+  .site-nav__actions { display: flex; align-items: center; gap: var(--space-3); }
+
+  .site-nav__phone { font-size: var(--text-sm); }
+}
+
+
+/* 5b. HERO
+   ========================================================================== */
+.hero { padding-block: var(--space-5) var(--space-8); }
+
+.hero__grid { display: grid; gap: var(--space-6); align-items: center; }
+
+.hero__title {
+  font-size: var(--text-3xl);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-3);
+  max-width: 14ch;
+}
+
+.hero__lead {
+  font-size: var(--text-md);
+  color: var(--ink-soft);
+  max-width: 34rem;
+  margin-bottom: var(--space-4);
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.hero__actions .btn { width: 100%; }
+
+.hero__checks {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--sand-deep);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.hero__media { position: relative; }
+
+/* Sandfarget flate bak bildet – gir dybde og en taktil, «lagvis» følelse */
+.hero__media::before {
+  content: "";
+  position: absolute;
+  /* Mobil: stikker bare 8 px ut, så den holder seg innenfor 16 px sidemarg */
+  inset: var(--space-2) calc(var(--space-1) * -1) calc(var(--space-1) * -1) var(--space-2);
+  border-radius: var(--radius-lg);
+  background: var(--sand);
+  z-index: -1;
+}
+
+@media (min-width: 768px) {
+  .hero__media::before { inset: var(--space-3) calc(var(--space-3) * -1) calc(var(--space-3) * -1) var(--space-3); }
+}
+
+.hero__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+}
+
+.hero__caption {
+  position: relative;
+  margin: calc(var(--space-4) * -1) var(--space-2) 0;
+  padding: var(--space-2) var(--space-3);
+  max-width: 22rem;
+  background: var(--paper-raised);
+  border-left: 4px solid var(--clay);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-2);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.hero__caption strong { display: block; color: var(--ink); }
+
+@media (min-width: 480px) {
+  .hero__actions { flex-direction: row; align-items: center; gap: var(--space-3); }
+  .hero__actions .btn { width: auto; }
+  .hero__checks { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-3); }
+}
+
+@media (min-width: 768px) {
+  .hero { padding-block: var(--space-8) var(--space-10); }
+  .hero__media img { aspect-ratio: 16 / 10; }
+}
+
+@media (min-width: 1024px) {
+  .hero { padding-block: var(--space-8) var(--space-12); }
+  .hero__grid { grid-template-columns: 1.15fr 0.85fr; gap: var(--space-8); }
+  .hero__media img { aspect-ratio: 4 / 5; }
+  .hero__caption {
+    position: absolute;
+    left: calc(var(--space-6) * -1);
+    bottom: var(--space-5);
+    margin: 0;
+  }
+}
+
+
+/* 5c. TILLITSLINJE
+   ========================================================================== */
+.trust {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.trust__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.trust__item {
+  display: flex;
+  flex-direction: column-reverse; /* tallet først visuelt, etiketten først for skjermleser (dt → dd) */
+  gap: var(--space-half);
+  padding: var(--space-3) var(--space-2);
+  border-color: rgb(245 241 234 / 0.12);
+  border-style: solid;
+  border-width: 0 0 1px;
+}
+
+.trust__item:nth-child(odd) { border-right-width: 1px; }
+
+.trust__item:nth-last-child(-n + 2) { border-bottom-width: 0; }
+
+.trust__item dt { font-size: var(--text-sm); color: rgb(245 241 234 / 0.72); }
+
+.trust__item dd {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.trust__item dd a { color: var(--clay-light); text-decoration: none; border-bottom: 1px solid rgb(230 160 124 / 0.5); transition: border-color var(--dur) var(--ease); }
+
+.trust__item dd a:hover { border-color: var(--clay-light); }
+
+@media (min-width: 768px) {
+  .trust__list { grid-template-columns: repeat(4, 1fr); }
+  .trust__item { padding: var(--space-4) var(--space-3); border-width: 0 1px 0 0 !important; }
+  .trust__item:last-child { border-right-width: 0 !important; }
+}
+
+
+/* 5d. TJENESTER
+   ========================================================================== */
+.services { display: grid; gap: var(--space-4); }
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper-raised);
+  border: 1px solid rgb(217 204 184 / 0.6);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease);
+}
+
+.service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-3); }
+
+.service-card__media { overflow: hidden; }
+
+.service-card__media img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 600ms var(--ease);
+}
+
+.service-card:hover .service-card__media img { transform: scale(1.04); }
+
+.service-card__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-3) var(--space-3);
+}
+
+.service-card__icon {
+  position: absolute;
+  top: 0;
+  left: var(--space-3);
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius);
+  background: var(--clay);
+  color: var(--white);
+  box-shadow: var(--shadow-2);
+}
+
+.service-card__icon .icon { width: 26px; height: 26px; }
+
+.service-card__title { font-size: var(--text-xl); }
+
+.service-card__body > p { color: var(--ink-soft); }
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--sand);
+  font-weight: 600;
+  color: var(--clay-text);
+  text-decoration: none;
+}
+
+.card-link .icon { width: 1.1rem; height: 1.1rem; transition: transform var(--dur) var(--ease); }
+
+.card-link:hover .icon { transform: translateX(4px); }
+
+@media (min-width: 768px) {
+  .services { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .services { grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+}
+
+
+/* 5e. PROSESS
+   ========================================================================== */
+.section--dark { background-image: var(--texture); }
+
+.process {
+  display: grid;
+  gap: var(--space-2);
+  counter-reset: step;
+}
+
+.process__step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-3) var(--space-3);
+  background: var(--moss-soft);
+  border: 1px solid rgb(245 241 234 / 0.08);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+
+.process__step:hover { border-color: rgb(230 160 124 / 0.45); }
+
+.process__num {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: 1;
+  color: var(--clay-light);
+  margin-bottom: var(--space-1);
+}
+
+.process__title { font-size: var(--text-lg); color: var(--paper); }
+
+.process__step p { color: rgb(245 241 234 / 0.8); font-size: var(--text-sm); }
+
+.process__step .process__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: 1px solid rgb(245 241 234 / 0.12);
+  font-weight: 600;
+  color: var(--paper);
+}
+
+.process__meta .icon { width: 1rem; height: 1rem; color: var(--clay-light); }
+
+@media (min-width: 768px) {
+  .process { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+}
+
+@media (min-width: 1024px) {
+  .process { grid-template-columns: repeat(4, 1fr); }
+
+  /* Tynn linje som binder stegene sammen */
+  .process__step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--space-4) + 1.2rem);
+    right: calc(var(--space-3) * -1);
+    width: var(--space-3);
+    height: 2px;
+    background: rgb(230 160 124 / 0.5);
+  }
+}
+
+
+/* 5f. PROSJEKTER (CASE)
+   ========================================================================== */
+.cases { display: grid; gap: var(--space-10); }
+
+.case { display: grid; gap: var(--space-4); align-items: start; }
+
+.case__gallery { display: grid; gap: var(--space-1); }
+
+.case__main {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--sand);
+  box-shadow: var(--shadow-2);
+  cursor: zoom-in;
+}
+
+.case__main img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 600ms var(--ease), opacity 250ms var(--ease);
+}
+
+.case__main:hover img { transform: scale(1.02); }
+
+.case__main img.is-swapping { opacity: 0; }
+
+.case__zoom {
+  position: absolute;
+  right: var(--space-2);
+  bottom: var(--space-2);
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background: rgb(251 249 245 / 0.92);
+  color: var(--ink);
+  box-shadow: var(--shadow-1);
+  transition: transform var(--dur) var(--ease);
+}
+
+.case__zoom .icon { width: 18px; height: 18px; }
+
+.case__main:hover .case__zoom { transform: scale(1.08); }
+
+.case__thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-1);
+}
+
+.case__thumb {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--sand);
+  opacity: 0.7;
+  transition: opacity var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.case__thumb img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+
+.case__thumb:hover { opacity: 1; }
+
+.case__thumb[aria-pressed="true"] { opacity: 1; border-color: var(--clay); }
+
+.case__tags { display: flex; flex-wrap: wrap; gap: var(--space-1); margin-bottom: var(--space-2); }
+
+.case__title { font-size: var(--text-xl); margin-bottom: var(--space-2); }
+
+.case__body > p { color: var(--ink-soft); }
+
+.case__facts {
+  display: grid;
+  gap: var(--space-1);
+  margin-block: var(--space-3);
+  padding-block: var(--space-2);
+  border-block: 1px solid var(--sand-deep);
+  font-size: var(--text-sm);
+}
+
+.case__facts div { display: grid; grid-template-columns: 7rem 1fr; gap: var(--space-2); }
+
+.case__facts dt { font-weight: 600; }
+
+.case__facts dd { color: var(--ink-soft); }
+
+.case__body .case__caption {
+  padding-left: var(--space-2);
+  border-left: 3px solid var(--clay);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--ink);
+}
+
+@media (min-width: 1024px) {
+  .case { grid-template-columns: 1.35fr 1fr; gap: var(--space-8); align-items: center; }
+  .case--flip .case__gallery { order: 2; }
+}
+
+
+/* 5g. OM OSS
+   ========================================================================== */
+.about { display: grid; gap: var(--space-6); align-items: start; }
+
+.about__media { position: relative; max-width: 28rem; }
+
+.about__media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+}
+
+/* Terrakotta-ramme forskjøvet bak bildet */
+.about__media::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--space-2) * -1) var(--space-2) var(--space-2) calc(var(--space-2) * -1);
+  border: 2px solid var(--clay);
+  border-radius: var(--radius-lg);
+  z-index: 0;
+}
+
+.about__media picture { position: relative; z-index: 1; }
+
+.values {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.values__item {
+  padding: var(--space-3);
+  background: var(--paper-raised);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+}
+
+.values__title {
+  font-size: var(--text-md);
+  margin-bottom: var(--space-half);
+}
+
+.values__item p { font-size: var(--text-sm); color: var(--ink-soft); }
+
+@media (min-width: 768px) {
+  .about__media { margin-left: var(--space-2); }
+  .values { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .about { grid-template-columns: 0.8fr 1.2fr; gap: var(--space-10); align-items: center; }
+  .about__media { position: sticky; top: calc(var(--header-h) + var(--space-4)); }
+}
+
+
+/* 5h. OMTALER
+   ========================================================================== */
+.reviews { display: grid; gap: var(--space-3); }
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-3) var(--space-3);
+  background: var(--paper-raised);
+  border: 1px solid rgb(217 204 184 / 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+}
+
+.review__mark {
+  width: 32px;
+  height: 32px;
+  fill: var(--clay);
+  stroke: none;
+  opacity: 0.85;
+}
+
+.review__quote { font-size: var(--text-md); line-height: 1.55; flex: 1; }
+
+.review__by {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--sand);
+}
+
+.review__name { font-weight: 600; }
+
+.review__meta { font-size: var(--text-sm); color: var(--ink-soft); }
+
+@media (min-width: 768px) {
+  .reviews { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .reviews { grid-template-columns: repeat(3, 1fr); }
+}
+
+
+/* 5i. FAQ (native <details>: tastatur og skjermleser fungerer uten JS)
+   ========================================================================== */
+.faq { display: grid; gap: var(--space-4); }
+
+.faq__list {
+  border-top: 1px solid var(--sand-deep);
+}
+
+.faq__item { border-bottom: 1px solid var(--sand-deep); }
+
+.faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq__item summary::-webkit-details-marker { display: none; }
+
+.faq__item summary h3 {
+  font-size: var(--text-md);
+  font-weight: 600;
+  transition: color var(--dur) var(--ease);
+}
+
+.faq__item summary:hover h3 { color: var(--clay-text); }
+
+.faq__item summary .icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--paper-raised);
+  color: var(--clay-text);
+  transition: transform 300ms var(--ease), background-color var(--dur) var(--ease);
+}
+
+.faq__item[open] summary .icon { transform: rotate(45deg); background: var(--clay); color: var(--white); }
+
+.faq__answer {
+  padding-bottom: var(--space-3);
+  max-width: 44rem;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 1024px) {
+  .faq { grid-template-columns: 0.8fr 1.2fr; gap: var(--space-10); align-items: start; }
+  .faq__head { position: sticky; top: calc(var(--header-h) + var(--space-4)); margin-bottom: 0; }
+}
+
+
+/* 5j. KONTAKT OG SKJEMA
+   ========================================================================== */
+.contact { position: relative; }
+
+.contact__grid { display: grid; gap: var(--space-6); }
+
+.contact__channels { display: grid; gap: var(--space-2); margin-top: var(--space-4); }
+
+.channel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border: 1px solid var(--sand-deep);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+a.channel:hover { border-color: var(--clay); background: var(--paper-raised); transform: translateX(2px); }
+
+.channel__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius);
+  background: var(--sand);
+  color: var(--clay-text);
+  flex-shrink: 0;
+}
+
+.channel__label { display: block; font-size: var(--text-sm); color: var(--ink-soft); }
+
+.channel__value { display: block; font-weight: 600; overflow-wrap: anywhere; }
+
+.form {
+  padding: var(--space-4) var(--space-3);
+  background: var(--paper-raised);
+  border: 1px solid rgb(217 204 184 / 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-3);
+}
+
+.form__title { font-size: var(--text-xl); margin-bottom: var(--space-half); }
+
+.form__hint { font-size: var(--text-sm); color: var(--ink-soft); margin-bottom: var(--space-3); }
+
+.form__row { display: grid; gap: 0 var(--space-2); }
+
+.field { margin-bottom: var(--space-3); }
+
+.field__label { display: block; margin-bottom: var(--space-1); font-weight: 600; font-size: var(--text-sm); }
+
+.field__label span { color: var(--clay-text); }
+
+.field__input {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px var(--space-2);
+  background: var(--white);
+  border: 1px solid #b9ab96; /* 3:1 mot hvit – synlig feltkant (WCAG 1.4.11) */
+  border-radius: var(--radius);
+  font-size: var(--text-base); /* 16 px hindrer auto-zoom i iOS */
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.field__input::placeholder { color: #857b6e; }
+
+.field__input:hover { border-color: var(--ink-soft); }
+
+.field__input:focus {
+  outline: none;
+  border-color: var(--clay);
+  box-shadow: 0 0 0 4px rgb(180 83 42 / 0.18);
+}
+
+.field__input--select {
+  appearance: none;
+  padding-right: var(--space-5);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231c1e1a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-2) center;
+  background-size: 18px;
+}
+
+.field__input--textarea { min-height: 140px; resize: vertical; }
+
+.field__help { margin-top: var(--space-half); font-size: var(--text-sm); color: var(--ink-soft); }
+
+.field__error {
+  display: none;
+  margin-top: var(--space-half);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.field.has-error .field__input { border-color: var(--danger); box-shadow: 0 0 0 3px rgb(163 38 27 / 0.12); }
+
+.field.has-error .field__error { display: block; }
+
+.form__privacy { margin-bottom: var(--space-3); font-size: var(--text-xs); color: var(--ink-soft); }
+
+.form__honey { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Lastetilstand på send-knappen */
+.btn__spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgb(255 255 255 / 0.4);
+  border-top-color: var(--white);
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+.btn.is-loading { pointer-events: none; opacity: 0.85; }
+
+.btn.is-loading .btn__spinner { display: inline-block; }
+
+.form__status {
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  font-weight: 500;
+  animation: rise 300ms var(--ease);
+}
+
+.form__status:focus { outline: none; }
+
+.form__status.is-success { background: #e4efe2; color: var(--success); border-left: 4px solid var(--success); }
+
+.form__status.is-error { background: #f7e3df; color: var(--danger); border-left: 4px solid var(--danger); }
+
+.form__status a { color: inherit; font-weight: 700; }
+
+@media (min-width: 480px) {
+  .form__row { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 768px) {
+  .form { padding: var(--space-5); }
+}
+
+@media (min-width: 1024px) {
+  .contact__grid { grid-template-columns: 0.85fr 1.15fr; gap: var(--space-10); align-items: start; }
+  .contact__intro { position: sticky; top: calc(var(--header-h) + var(--space-4)); }
+}
+
+
+/* 5k. FOOTER
+   ========================================================================== */
+.site-footer {
+  padding-block: var(--space-8) var(--space-4);
+  background: var(--ink);
+  color: rgb(245 241 234 / 0.78);
+  font-size: var(--text-sm);
+}
+
+.site-footer__grid { display: grid; gap: var(--space-5); padding-bottom: var(--space-6); }
+
+.site-footer__brand { display: grid; gap: var(--space-2); justify-items: start; max-width: 22rem; }
+
+.site-footer .brand { color: var(--paper); }
+
+.site-footer__title {
+  margin-bottom: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clay-light);
+}
+
+.site-footer__col ul { display: grid; gap: var(--space-1); padding: 0; list-style: none; }
+
+.site-footer a:not(.btn):not(.brand) { color: inherit; text-decoration: none; transition: color var(--dur) var(--ease); }
+
+.site-footer a:not(.btn):not(.brand):hover { color: var(--paper); text-decoration: underline; text-underline-offset: 0.2em; }
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid rgb(245 241 234 / 0.12);
+  font-size: var(--text-xs);
+}
+
+.site-footer__top { display: inline-flex; align-items: center; gap: var(--space-half); }
+
+.icon--up { width: 14px; height: 14px; transform: rotate(-90deg); }
+
+@media (min-width: 768px) {
+  .site-footer__grid { grid-template-columns: repeat(3, 1fr); }
+  .site-footer__brand { grid-column: 1 / -1; }
+}
+
+@media (min-width: 1024px) {
+  .site-footer__grid { grid-template-columns: 1.6fr 1fr 1fr 1.2fr; }
+  .site-footer__brand { grid-column: auto; }
+}
+
+
+/* 5l. LYSBOKS
+   ========================================================================== */
+.lightbox {
+  width: min(64rem, calc(100vw - 2 * var(--space-2)));
+  max-height: calc(100vh - 2 * var(--space-2));
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+}
+
+.lightbox[open] { animation: rise 250ms var(--ease); }
+
+.lightbox::backdrop { background: rgb(28 30 26 / 0.8); }
+
+.lightbox__img {
+  width: 100%;
+  max-height: calc(100vh - 8rem);
+  object-fit: contain;
+  background: #111;
+}
+
+.lightbox__caption { padding: var(--space-2) var(--space-3); font-size: var(--text-sm); }
+
+.lightbox__close {
+  position: absolute;
+  top: var(--space-1);
+  right: var(--space-1);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: rgb(251 249 245 / 0.92);
+  color: var(--ink);
+}
+
+
+/* 5m. KVITTERINGSSIDE (takk.html)
+   ========================================================================== */
+.thanks { min-height: 100vh; display: grid; align-items: center; }
+
+.thanks__inner { max-width: 40rem; }
+
+.thanks .section-lead { margin-bottom: var(--space-4); }
+
+
+/* 6. BEVEGELSE OG TILGJENGELIGHET
+   ========================================================================== */
+
+/* Innhold under bretten toner inn når det scrolles fram. Klassen settes kun av
+   JS, så uten JS (eller hvis skriptet feiler) er alt synlig. */
+.reveal { opacity: 0; transform: translateY(16px); }
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes fade-in { from { opacity: 0; } }
+
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal { opacity: 1; transform: none; }
+}
+
+@media print {
+  .site-header,
+  .nav-backdrop,
+  .form,
+  .lightbox { display: none !important; }
+  body { background: none; }
+}

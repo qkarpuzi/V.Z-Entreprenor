@@ -1,1216 +1,817 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="nb">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="V.Z - Profesjonell entreprenør i Norge. Ekspertise innen malerarbeid, snekring og dekorasjon. Høy kvalitet og skreddersydde løsninger.">
-    <meta name="keywords" content="entreprenør, maler, snekker, dekoratør, renovering, Norge, Oslo">
-    <title>V.Z | Profesjonell Entreprenør</title>
-    <meta name="google-site-verification" content="4elAn1VOrxXYviuZuwuYCIWoDxabypgnGjEoeXTl2sg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #2a5a78;
-            --primary-light: #3a7fa6;
-            --secondary: #e3b23c;
-            --dark: #333333;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --white: #ffffff;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--dark);
-            background-color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
-        
-        ul {
-            list-style: none;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--primary);
-            color: var(--white);
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 14px;
-        }
-        
-        .btn:hover {
-            background-color: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .btn-secondary {
-            background-color: var(--secondary);
-            color: var(--dark);
-        }
-        
-        .btn-secondary:hover {
-            background-color: #f1c453;
-        }
-        
-        .section {
-            padding: 100px 0;
-            position: relative;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            position: relative;
-            text-align: center;
-            color: var(--primary);
-        }
-        
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-            margin: 20px auto;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition);
-            padding: 20px 0;
-        }
-        
-        header.scrolled {
-            background-color: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow);
-            padding: 10px 0;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 50px;
-            margin-right: 15px;
-        }
-        
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--white);
-        }
-        
-        header.scrolled .logo-text {
-            color: var(--primary);
-        }
-        
-        .logo-subtext {
-            font-size: 0.8rem;
-            color: var(--white);
-            opacity: 0.8;
-            margin-top: 2px;
-        }
-        
-        header.scrolled .logo-subtext {
-            color: var(--gray);
-        }
-        
-        /* Navigation */
-        nav ul {
-            display: flex;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-        }
-        
-        nav ul li a {
-            color: var(--white);
-            font-weight: 500;
-            position: relative;
-            padding: 5px 0;
-        }
-        
-        header.scrolled nav ul li a {
-            color: var(--dark);
-        }
-        
-        nav ul li a:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--secondary);
-            transition: var(--transition);
-        }
-        
-        nav ul li a:hover:after {
-            width: 100%;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        header.scrolled .mobile-menu-btn {
-            color: var(--dark);
-        }
-        
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            min-height: 700px;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            color: var(--white);
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--white);
-            font-size: 2rem;
-            animation: bounce 2s infinite;
-            cursor: pointer;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) translateX(-50%);
-            }
-            40% {
-                transform: translateY(-20px) translateX(-50%);
-            }
-            60% {
-                transform: translateY(-10px) translateX(-50%);
-            }
-        }
-        
-        /* About Section */
-        .about {
-            background-color: var(--white);
-        }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-text h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--gray);
-        }
-        
-        .about-image {
-            flex: 1;
-            position: relative;
-        }
-        
-        .about-image img {
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-        }
-        
-        .about-image:before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 5px solid var(--secondary);
-            border-radius: 8px;
-            top: -20px;
-            left: -20px;
-            z-index: -1;
-        }
-        
-        /* Services Section */
-        .services {
-            background-color: var(--light);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .service-img {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .service-card:hover .service-img img {
-            transform: scale(1.1);
-        }
-        
-        .service-content {
-            padding: 30px;
-        }
-        
-        .service-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .service-content p {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-        
-        /* Gallery Section */
-        .gallery {
-            background-color: var(--white);
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            height: 250px;
-            box-shadow: var(--shadow);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: var(--white);
-            padding: 20px;
-            transform: translateY(100%);
-            transition: var(--transition);
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-        
-        /* Contact Section */
-        .contact {
-            background-color: var(--light);
-        }
-        
-        .contact-container {
-            display: flex;
-            gap: 50px;
-        }
-        
-        .contact-info {
-            flex: 1;
-        }
-        
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: var(--primary);
-        }
-        
-        .contact-details {
-            margin-bottom: 30px;
-        }
-        
-        .contact-detail {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-        
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--secondary);
-            margin-right: 15px;
-            margin-top: 5px;
-        }
-        
-        .contact-text h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-        
-        .contact-text p, .contact-text a {
-            color: var(--gray);
-        }
-        
-        .contact-text a:hover {
-            color: var(--primary);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            color: var(--white);
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-        
-        .social-links a:hover {
-            background-color: var(--secondary);
-            color: var(--dark);
-            transform: translateY(-5px);
-        }
-        
-        .contact-form {
-            flex: 1;
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Montserrat', sans-serif;
-            transition: var(--transition);
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(42, 90, 120, 0.1);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 80px 0 30px;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-col h4 {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-col h4:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--secondary);
-        }
-        
-        .footer-col p {
-            margin-bottom: 15px;
-            opacity: 0.8;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            opacity: 0.8;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--secondary);
-            padding-left: 5px;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .footer-bottom p {
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            max-width: 350px;
-            height: 100vh;
-            background-color: var(--white);
-            z-index: 1100;
-            transition: var(--transition);
-            padding: 30px;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-        }
-        
-        .mobile-menu.active {
-            right: 0;
-        }
-        
-        .mobile-menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .close-menu {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark);
-        }
-        
-        .mobile-nav ul li {
-            margin-bottom: 20px;
-        }
-        
-        .mobile-nav ul li a {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1050;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-        
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .about-image {
-                margin-top: 30px;
-            }
-            
-            .contact-container {
-                flex-direction: column;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .section {
-                padding: 70px 0;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 40px;
-            }
-            
-            nav ul {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .section {
-                padding: 50px 0;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .hero {
-                min-height: 600px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .logo img {
-                height: 40px;
-            }
-            
-            .logo-text {
-                font-size: 1.2rem;
-            }
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease forwards;
-        }
-        
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-        
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-        
-        .delay-3 {
-            animation-delay: 0.6s;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--
+    INNHOLD SOM MÅ BEKREFTES FØR LANSERING
+    Alt merket med class="is-placeholder" vises med en synlig «Plassholder»-etikett.
+    I tillegg bør disse påstandene i teksten bekreftes av V.Z (søk etter «BEKREFT»):
+      - Antall år i faget og antall fullførte oppdrag (tillitslinjen)
+      - Ansvarsforsikring
+      - Gratis befaring, og svartid (1 virkedag) / tilbudstid (2–3 virkedager)
+      - Tidsestimater i FAQ
+      - Bruk av Flügger-produkter
+    Hentet fra Enhetsregisteret (sjekket 2026-09): org.nr. 933 880 834, MVA-registrert, 0580 Oslo.
+  -->
+
+  <title>Maler og snekker i Oslo | V.Z Entreprenør – sparkling, maling og snekkerarbeid</title>
+  <meta name="description" content="V.Z Entreprenør utfører malerarbeid, sparkling og snekkerarbeid for boliger og næringslokaler i Oslo. Gratis befaring, skriftlig tilbud og 5 års reklamasjonsrett.">
+  <link rel="canonical" href="https://qkarpuzi.github.io/V.Z-Entreprenor/">
+  <meta name="google-site-verification" content="4elAn1VOrxXYviuZuwuYCIWoDxabypgnGjEoeXTl2sg">
+  <meta name="theme-color" content="#f5f1ea">
+
+  <!-- Open Graph / sosial deling -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="nb_NO">
+  <meta property="og:site_name" content="V.Z Entreprenør">
+  <meta property="og:title" content="Maler og snekker i Oslo – V.Z Entreprenør">
+  <meta property="og:description" content="Sparkling, maling og snekkerarbeid for hjem og bedrift. Gratis befaring og skriftlig tilbud.">
+  <meta property="og:url" content="https://qkarpuzi.github.io/V.Z-Entreprenor/">
+  <meta property="og:image" content="https://qkarpuzi.github.io/V.Z-Entreprenor/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Håndverker fra V.Z Entreprenør helsparkler en vegg, med teksten «Maler og snekker i Oslo».">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Ikoner -->
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Fonter: preconnect + display=swap, så tekst vises med en gang -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap">
+
+  <!-- Heltebildet er LCP-elementet: hent det tidlig -->
+  <link rel="preload" as="image" type="image/webp"
+        imagesrcset="assets/img/helsparkling-arbeid-480.webp 480w, assets/img/helsparkling-arbeid-800.webp 800w, assets/img/helsparkling-arbeid-1200.webp 1200w"
+        imagesizes="(min-width: 1024px) 40vw, 100vw">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/main.js" defer></script>
+
+  <!-- Strukturerte data (LocalBusiness) for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["HousePainter", "GeneralContractor"],
+    "@id": "https://qkarpuzi.github.io/V.Z-Entreprenor/#business",
+    "name": "V.Z Entreprenør",
+    "legalName": "VZ Entreprenør Vlora Zenuni",
+    "url": "https://qkarpuzi.github.io/V.Z-Entreprenor/",
+    "logo": "https://qkarpuzi.github.io/V.Z-Entreprenor/assets/img/icon-512.png",
+    "image": "https://qkarpuzi.github.io/V.Z-Entreprenor/assets/img/og-image.jpg",
+    "description": "Malerarbeid, sparkling, snekkerarbeid og fargeråd for boliger og næringslokaler i Oslo.",
+    "telephone": "+4796828588",
+    "email": "vz.zenuni@hotmail.com",
+    "taxID": "933880834",
+    "vatID": "NO933880834MVA",
+    "address": {
+      "@type": "PostalAddress",
+      "postalCode": "0580",
+      "addressLocality": "Oslo",
+      "addressCountry": "NO"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Oslo" },
+      { "@type": "AdministrativeArea", "name": "Akershus" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Tjenester",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Malerarbeid", "description": "Sparkling og maling av vegger, tak, listverk og dører, innvendig og utvendig." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Snekkerarbeid", "description": "Skillevegger, montering av dører, vinduer og kjøkken, listing og kledning." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dekorasjon og fargeråd", "description": "Fargesetting, fargeprøver og dekorative overflater for hjem og næringslokaler." } }
+      ]
+    }
+  }
+  </script>
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <div class="container header-container">
-            <div class="logo">
-                <img src="Final Logo.png" alt="V.Z Logo">
-                <div>
-                    <div class="logo-text">V.Z</div>
-                    <div class="logo-subtext">Profesjonell Entreprenør</div>
-                </div>
-            </div>
-            
-            <nav class="desktop-nav">
-                <ul>
-                    <li><a href="#home">Hjem</a></li>
-                    <li><a href="#about">Om Oss</a></li>
-                    <li><a href="#services">Tjenester</a></li>
-                    <li><a href="#gallery">Prosjekter</a></li>
-                    <li><a href="#contact">Kontakt</a></li>
-                </ul>
-            </nav>
-            
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
+  <a class="skip-link" href="#main">Hopp til innhold</a>
+
+  <!-- Ikonsett (inline SVG): erstatter Font Awesome (~100 kB CSS + fonter) -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></symbol>
+    <symbol id="i-roller" viewBox="0 0 24 24"><rect x="2" y="2" width="16" height="6" rx="2"/><path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="8" y="16" width="4" height="6" rx="1"/></symbol>
+    <symbol id="i-hammer" viewBox="0 0 24 24"><path d="m15 12-8.4 8.4a2.1 2.1 0 1 1-3-3L12 9"/><path d="M17.6 15 22 10.6M20.9 11.7 12.3 3.1a4 4 0 0 0-5.6 0L6 3.8l8.5 1.4 5.3 5.3"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 1 10-10c0 2.5-2 3.5-4 3.5h-2.2a1.8 1.8 0 0 0-1.3 3.1c.3.4.5.8.5 1.3 0 1.2-1 2.1-3 2.1z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="12" cy="7" r="1"/><circle cx="16.5" cy="10.5" r="1"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
+    <symbol id="i-quote" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.76-2-2-2H4c-1.25 0-2 .75-2 1.97V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .01-1 1.03V20c0 1 0 1 1 1zM15 21c3 0 7-1 7-8V5c0-1.25-.76-2-2-2h-4c-1.25 0-2 .75-2 1.97V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></symbol>
+  </svg>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="top" data-header>
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" aria-label="V.Z Entreprenør – til toppen av siden">
+        <picture>
+          <source type="image/webp" srcset="assets/img/logo-mark-48.webp 1x, assets/img/logo-mark-96.webp 2x">
+          <img class="brand__mark" src="assets/img/logo-mark-48.png" srcset="assets/img/logo-mark-96.png 2x" width="150" height="48" alt="">
+        </picture>
+        <span class="brand__text">
+          <span class="brand__name">V.Z Entreprenør</span>
+          <span class="brand__tag">Maler &amp; snekker · Oslo</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        <span class="visually-hidden" data-nav-toggle-label>Åpne meny</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Hovedmeny" data-nav>
+        <ul class="site-nav__list">
+          <li><a href="#tjenester">Tjenester</a></li>
+          <li><a href="#prosess">Slik jobber vi</a></li>
+          <li><a href="#prosjekter">Prosjekter</a></li>
+          <li><a href="#om-oss">Om oss</a></li>
+          <li><a href="#sporsmal">Spørsmål</a></li>
+        </ul>
+        <div class="site-nav__actions">
+          <a class="site-nav__phone" href="tel:+4796828588">
+            <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>968 28 588
+          </a>
+          <a class="btn btn--primary btn--sm" href="#kontakt">Få tilbud</a>
         </div>
-    </header>
-    
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <div class="mobile-menu-header">
-            <div class="logo">
-                <img src="Final Logo.png" alt="V.Z Logo">
-                <div>
-                    <div class="logo-text">V.Z</div>
-                    <div class="logo-subtext">Profesjonell Entreprenør</div>
-                </div>
-            </div>
-            <button class="close-menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        
-        <nav class="mobile-nav">
-            <ul>
-                <li><a href="#home">Hjem</a></li>
-                <li><a href="#about">Om Oss</a></li>
-                <li><a href="#services">Tjenester</a></li>
-                <li><a href="#gallery">Prosjekter</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-            </ul>
-        </nav>
+      </nav>
     </div>
-    
-    <div class="overlay"></div>
-    
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content fade-in">
-            <h1>Kvalitetsarbeid for ditt hjem eller firma</h1>
-            <p>Profesjonelle tjenester innen malerarbeid, snekring og dekorasjon. Vi forvandler dine visjoner til virkelighet med presisjon og stil.</p>
-            <div class="hero-btns">
-                <a href="#contact" class="btn">Kontakt oss</a>
-                <a href="#services" class="btn btn-secondary">Våre tjenester</a>
-            </div>
+  </header>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <p class="eyebrow"><span class="swatches" aria-hidden="true"></span>Maler- og snekkerarbeid i Oslo</p>
+          <h1 class="hero__title" id="hero-title">Grundig forarbeid, pene flater og en&nbsp;pris som&nbsp;holder.</h1>
+          <p class="hero__lead">Vi sparkler, maler og snekrer i boliger og næringslokaler. Du får befaring og et skriftlig tilbud før vi starter, og vi dekker til og rydder etter oss hver dag.</p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--lg" href="#kontakt">
+              Bestill gratis befaring
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+            <a class="link-quiet" href="tel:+4796828588">eller ring <strong>968 28 588</strong></a>
+          </div>
+
+          <ul class="checklist hero__checks">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Skriftlig tilbud før oppstart</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>5 års reklamasjonsrett</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Registrert og MVA-registrert foretak</li>
+          </ul>
         </div>
-        <a href="#about" class="scroll-down">
-            <i class="fas fa-chevron-down"></i>
-        </a>
+
+        <figure class="hero__media">
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/img/helsparkling-arbeid-480.webp 480w, assets/img/helsparkling-arbeid-800.webp 800w, assets/img/helsparkling-arbeid-1200.webp 1200w"
+                    sizes="(min-width: 1024px) 40vw, 100vw">
+            <img src="assets/img/helsparkling-arbeid-800.jpg"
+                 srcset="assets/img/helsparkling-arbeid-480.jpg 480w, assets/img/helsparkling-arbeid-800.jpg 800w, assets/img/helsparkling-arbeid-1200.jpg 1200w"
+                 sizes="(min-width: 1024px) 40vw, 100vw"
+                 width="800" height="891" fetchpriority="high" decoding="async"
+                 alt="Håndverker i hvit arbeidsbukse og Flügger-t-skjorte helsparkler en ny vegg med stålbrett, sett bakfra.">
+          </picture>
+          <figcaption class="hero__caption">
+            <strong>Helsparkling før maling.</strong>
+            Et helt jevnt underlag er det du ser i sidelys, lenge etter at malingen har tørket.
+          </figcaption>
+        </figure>
+      </div>
     </section>
-    
-    <!-- About Section -->
-    <section class="section about" id="about">
-        <div class="container">
-            <h2 class="section-title">Om V.Z</h2>
-            <div class="about-content">
-                <div class="about-text fade-in">
-                    <h2>Din pålitelige partner for kvalitetsarbeid</h2>
-                    <p>Med mange års erfaring i bransjen, har V.Z etablert seg som en pålitelig aktør innen malerarbeid, snekring og dekorasjon. Vårt engasjerte team av fagfolk er dedikert til å levere fremragende resultater for hvert eneste prosjekt.</p>
-                    <p>Vi forstår at ditt hjem eller firma er unikt, og derfor tilbyr vi skreddersydde løsninger som passer dine spesifikke behov og preferanser. Fra første konsultasjon til ferdigstillelse, sikrer vi en sømløs og stressfri opplevelse.</p>
-                    <p>Vår filosofi er enkel: Levere førsteklasses arbeid med ærlighet, integritet og oppmerksomhet på detaljer. Enten det er en liten reparasjon eller et stort renoveringsprosjekt, behandler vi hver oppgave med samme nivå av profesjonalitet og stolthet.</p>
-                    <a href="#contact" class="btn">Kontakt oss i dag</a>
-                </div>
-                <div class="about-image fade-in delay-1">
-                    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="V.Z team">
-                </div>
-            </div>
-        </div>
+
+    <!-- ============ TILLIT / NØKKELTALL ============ -->
+    <section class="trust" aria-label="Nøkkeltall og garantier">
+      <div class="container">
+        <dl class="trust__list">
+          <!-- BEKREFT: antall år og oppdrag -->
+          <div class="trust__item is-placeholder">
+            <dt>År i faget</dt>
+            <dd>10+</dd>
+          </div>
+          <div class="trust__item is-placeholder">
+            <dt>Fullførte oppdrag</dt>
+            <dd>150+</dd>
+          </div>
+          <div class="trust__item">
+            <dt>Reklamasjonsrett</dt>
+            <dd>5 år</dd>
+          </div>
+          <div class="trust__item">
+            <dt>Org.nr. i Brønnøysund</dt>
+            <dd><a href="https://virksomhet.brreg.no/nb/oppslag/enheter/933880834" rel="noopener" target="_blank">933 880 834<span class="visually-hidden"> (åpnes i ny fane)</span></a></dd>
+          </div>
+        </dl>
+      </div>
     </section>
-    
-    <!-- Services Section -->
-    <section class="section services" id="services">
-        <div class="container">
-            <h2 class="section-title">Våre Tjenester</h2>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Malerarbeid">
-                    </div>
-                    <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-paint-roller"></i>
-                        </div>
-                        <h3>Malerarbeid</h3>
-                        <p>Profesjonell maling for både innendørs og utendørs prosjekter. Vi bruker kun de beste materialene for et varig og flott resultat.</p>
-                        <a href="#contact" class="btn">Be om tilbud</a>
-                    </div>
-                </div>
-                
-                <div class="service-card fade-in delay-1">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Snekkerarbeid">
-                    </div>
-                    <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-hammer"></i>
-                        </div>
-                        <h3>Snekkerarbeid</h3>
-                        <p>Skreddersydde snekkerløsninger for hjem og bedrifter. Fra kjøkkenrenoveringer til tilpassede møbler, vi håndterer alt.</p>
-                        <a href="#contact" class="btn">Be om tilbud</a>
-                    </div>
-                </div>
-                
-                <div class="service-card fade-in delay-2">
-                    <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dekorasjon">
-                    </div>
-                    <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-couch"></i>
-                        </div>
-                        <h3>Dekorasjon</h3>
-                        <p>Kreative dekorasjonsløsninger som gir ditt rom et unikt preg. Vi hjelper deg med å realisere din visjon for det perfekte interiør.</p>
-                        <a href="#contact" class="btn">Be om tilbud</a>
-                    </div>
-                </div>
+
+    <!-- ============ TJENESTER ============ -->
+    <section class="section" id="tjenester" aria-labelledby="tjenester-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow"><span class="swatches" aria-hidden="true"></span>Tjenester</p>
+          <h2 class="section-title" id="tjenester-title">Tre fag, én kontaktperson</h2>
+          <p class="section-lead">Mange oppussinger stopper opp mellom håndverkerne. Hos oss gjør samme team snekkerarbeidet, sparklingen og malingen, så du slipper å koordinere.</p>
+        </header>
+
+        <div class="services">
+          <article class="service-card" id="malerarbeid">
+            <div class="service-card__media">
+              <picture>
+                <source type="image/webp" srcset="assets/img/lobby-sand-og-oliven-480.webp 480w, assets/img/lobby-sand-og-oliven-800.webp 800w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw">
+                <img src="assets/img/lobby-sand-og-oliven-800.jpg" srcset="assets/img/lobby-sand-og-oliven-480.jpg 480w, assets/img/lobby-sand-og-oliven-800.jpg 800w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
+                     width="800" height="599" loading="lazy" decoding="async"
+                     alt="Nymalte vegger i lys sand og dempet oliven i lobbyen til et næringsbygg, med et stort innfelt vindu.">
+              </picture>
             </div>
+            <div class="service-card__body">
+              <span class="service-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-roller"/></svg></span>
+              <h3 class="service-card__title">Malerarbeid</h3>
+              <p>Innvendig og utvendig. Vi bruker mest tid på det du ikke ser: sparkling, sliping og grunning, som avgjør hvordan flaten ser ut i ti år.</p>
+              <ul class="checklist checklist--compact">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Flekk- og helsparkling</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Vegger, tak og våtromstak</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Listverk, dører og vinduskarmer</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Strie og glassfiberduk</li>
+              </ul>
+              <a class="card-link" href="#kontakt" data-service="Malerarbeid">Be om tilbud på malerarbeid<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <article class="service-card" id="snekkerarbeid">
+            <div class="service-card__media">
+              <picture>
+                <source type="image/webp" srcset="assets/img/skillevegg-stenderverk-480.webp 480w, assets/img/skillevegg-stenderverk-800.webp 800w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw">
+                <img src="assets/img/skillevegg-stenderverk-800.jpg" srcset="assets/img/skillevegg-stenderverk-480.jpg 480w, assets/img/skillevegg-stenderverk-800.jpg 800w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
+                     width="800" height="599" loading="lazy" decoding="async"
+                     alt="Ny skillevegg under bygging i et kontor: stålstendere med isolasjon, klar for gipsplater.">
+              </picture>
+            </div>
+            <div class="service-card__body">
+              <span class="service-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-hammer"/></svg></span>
+              <h3 class="service-card__title">Snekkerarbeid</h3>
+              <p>Fra nye skillevegger til ferdig listing. Vi bygger med tanke på at veggen skal sparkles og males etterpå, med rette hjørner og tette skjøter.</p>
+              <ul class="checklist checklist--compact">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Skillevegger i stål- og trestendere</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Montering av dører og vinduer</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Kjøkkenmontering</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Listing og innvendig kledning</li>
+              </ul>
+              <a class="card-link" href="#kontakt" data-service="Snekkerarbeid">Be om tilbud på snekkerarbeid<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <article class="service-card" id="dekorasjon">
+            <div class="service-card__media">
+              <picture>
+                <source type="image/webp" srcset="assets/img/lobby-gronn-vegg-oversikt-480.webp 480w, assets/img/lobby-gronn-vegg-oversikt-800.webp 800w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw">
+                <img src="assets/img/lobby-gronn-vegg-oversikt-800.jpg" srcset="assets/img/lobby-gronn-vegg-oversikt-480.jpg 480w, assets/img/lobby-gronn-vegg-oversikt-800.jpg 800w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
+                     width="800" height="599" loading="lazy" decoding="async"
+                     alt="Lang vegg malt i salviegrønt i et fellesareal, med sorte lenestoler og hvite taklamper.">
+              </picture>
+            </div>
+            <div class="service-card__body">
+              <span class="service-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-palette"/></svg></span>
+              <h3 class="service-card__title">Dekorasjon og fargeråd</h3>
+              <p>En farge ser annerledes ut på veggen enn på fargekartet. Vi hjelper deg å velge ut fra lyset i rommet, og maler prøveflater før du bestemmer deg.</p>
+              <ul class="checklist checklist--compact">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Fargesetting av rom og fellesarealer</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Prøveflater på veggen</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Aksentvegger og dekorative overflater</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Råd om glans og slitestyrke</li>
+              </ul>
+              <a class="card-link" href="#kontakt" data-service="Dekorasjon og fargeråd">Be om fargeråd<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
         </div>
+      </div>
     </section>
-    
-    <!-- Gallery Section -->
-    <section class="section gallery" id="gallery">
-        <div class="container">
-            <h2 class="section-title">Våre Prosjekter</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item fade-in">
-                    <img src="Foto2.jpg" alt="Prosjekt 1">
-                    <div class="gallery-overlay">
-                        <h4>Moderne Leilighet</h4>
-                        <p>Fullstendig malerarbeid og dekorasjon</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in delay-1">
-                    <img src="Foto5.jpg" alt="Prosjekt 2">
-                    <div class="gallery-overlay">
-                        <h4>Kontorrenovering</h4>
-                        <p>Snekkerarbeid og innredning</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in delay-2">
-                    <img src="Foto3.jpg" alt="Prosjekt 3">
-                    <div class="gallery-overlay">
-                        <h4>Fasadeoppussing</h4>
-                        <p>Utendørs malerarbeid</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="Foto7.jpg" alt="Prosjekt 4">
-                    <div class="gallery-overlay">
-                        <h4>Badrenovering</h4>
-                        <p>Fullstendig renovasjon</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in delay-1">
-                    <img src="Foto6.jpg" alt="Prosjekt 5">
-                    <div class="gallery-overlay">
-                        <h4>Spisestue</h4>
-                        <p>Tilpasset snekkerarbeid</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in delay-2">
-                    <img src="foto 01.jpg" alt="Prosjekt 6">
-                    <div class="gallery-overlay">
-                        <h4>Hjemmekontor</h4>
-                        <p>Skreddersydd innredning</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in">
-                    <img src="foto02.jpg" alt="Prosjekt 7">
-                    <div class="gallery-overlay">
-                        <h4>Stue</h4>
-                        <p>Dekorasjon og fargekonsultasjon</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item fade-in delay-1">
-                    <img src="foto03.jpg" alt="Prosjekt 8">
-                    <div class="gallery-overlay">
-                        <h4>Kjøkken</h4>
-                        <p>Komplett renovasjon</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    <!-- ============ PROSESS ============ -->
+    <section class="section section--dark" id="prosess" aria-labelledby="prosess-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow eyebrow--light"><span class="swatches" aria-hidden="true"></span>Slik jobber vi</p>
+          <h2 class="section-title" id="prosess-title">Fra første telefon til ferdig rom</h2>
+          <p class="section-lead">Fire faste steg, så du alltid vet hva som skjer videre og hva det koster.</p>
+        </header>
+
+        <ol class="process">
+          <li class="process__step">
+            <span class="process__num" aria-hidden="true">01</span>
+            <h3 class="process__title">Befaring</h3>
+            <p>Vi kommer til deg, ser på underlaget og tar mål. Det er gratis og uforpliktende, og du får ærlige råd om hva som faktisk trengs.</p>
+            <p class="process__meta"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Hjemme hos deg eller i lokalet</p>
+          </li>
+          <li class="process__step">
+            <span class="process__num" aria-hidden="true">02</span>
+            <h3 class="process__title">Skriftlig tilbud</h3>
+            <p>Tilbudet beskriver arbeidet, produktene vi bruker, pris og oppstartsdato. Endringer underveis avtales skriftlig før de utføres.</p>
+            <!-- BEKREFT: tilbudstid -->
+            <p class="process__meta"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>Innen 2–3 virkedager</p>
+          </li>
+          <li class="process__step">
+            <span class="process__num" aria-hidden="true">03</span>
+            <h3 class="process__title">Utførelse</h3>
+            <p>Gulv og innredning dekkes til før vi starter. Vi gjør forarbeidet skikkelig, holder deg oppdatert og rydder arbeidsplassen hver dag.</p>
+            <p class="process__meta"><svg class="icon" aria-hidden="true"><use href="#i-roller"/></svg>Fast kontaktperson hele veien</p>
+          </li>
+          <li class="process__step">
+            <span class="process__num" aria-hidden="true">04</span>
+            <h3 class="process__title">Ferdigbefaring</h3>
+            <p>Vi går over resultatet sammen med deg. Er det noe du ikke er fornøyd med, retter vi det før jobben regnes som ferdig.</p>
+            <p class="process__meta"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>Deretter 5 års reklamasjonsrett</p>
+          </li>
+        </ol>
+      </div>
     </section>
-    
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Kontakt Oss</h2>
-            <div class="contact-container">
-                <div class="contact-info fade-in">
-                    <h3>La oss realisere dine prosjekter sammen</h3>
-                    <div class="contact-details">
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Adresse</h4>
-                                <p>Oslo, Norge</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Telefon</h4>
-                                <p><a href="tel:+4796828588">+47 968 28 588</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-detail">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>E-post</h4>
-                                <p><a href="mailto:vz.zenuni@hotmail.com">vz.zenuni@hotmail.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h4 style="margin-top: 30px;">Følg oss</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                
-                <div class="contact-form fade-in delay-1">
-                    <form action="mailto:vz.zenuni@hotmail.com" method="post" enctype="text/plain">
-                        <div class="form-group">
-                            <label for="name">Fullt navn</label>
-                            <input type="text" id="name" name="name" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">E-post</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Telefon (valgfri)</label>
-                            <input type="tel" id="phone" name="phone" class="form-control">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service">Interessert i (valgfri)</label>
-                            <select id="service" name="service" class="form-control">
-                                <option value="">Velg tjeneste</option>
-                                <option value="Malerarbeid">Malerarbeid</option>
-                                <option value="Snekkerarbeid">Snekkerarbeid</option>
-                                <option value="Dekorasjon">Dekorasjon</option>
-                                <option value="Annet">Annet</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Din melding</label>
-                            <textarea id="message" name="message" class="form-control" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Send melding</button>
-                    </form>
-                </div>
+
+    <!-- ============ PROSJEKTER / CASE ============ -->
+    <section class="section" id="prosjekter" aria-labelledby="prosjekter-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow"><span class="swatches" aria-hidden="true"></span>Prosjekter</p>
+          <h2 class="section-title" id="prosjekter-title">Utvalgte oppdrag</h2>
+          <p class="section-lead">Alle bildene er fra våre egne jobber, også de som er tatt midt i arbeidet. Trykk på et lite bilde for å se flere, eller på hovedbildet for å forstørre.</p>
+        </header>
+
+        <div class="cases">
+          <!-- Case 1 -->
+          <article class="case" data-case>
+            <div class="case__gallery">
+              <button class="case__main" type="button" data-case-open aria-label="Forstørr bildet">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/lobby-sand-og-oliven-800.webp 800w, assets/img/lobby-sand-og-oliven-1200.webp 1200w" sizes="(min-width: 1024px) 640px, 100vw" data-case-source>
+                  <img src="assets/img/lobby-sand-og-oliven-800.jpg" width="800" height="599" loading="lazy" decoding="async" data-case-img
+                       alt="Lobby i næringsbygg med skråstilt veggvolum i lys sand og tilstøtende vegg i dempet oliven.">
+                </picture>
+                <span class="case__zoom" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
+              </button>
+              <ul class="case__thumbs" aria-label="Flere bilder fra oppdraget">
+                <li><button class="case__thumb" type="button" aria-pressed="true" data-src="lobby-sand-og-oliven" data-w="800" data-h="599" data-alt="Lobby i næringsbygg med skråstilt veggvolum i lys sand og tilstøtende vegg i dempet oliven." data-caption="Ferdig: sand og oliven møtes i hjørnet.">
+                  <img src="assets/img/lobby-sand-og-oliven-480.webp" width="480" height="359" loading="lazy" alt="">
+                  <span class="visually-hidden">Vis bilde 1</span></button></li>
+                <li><button class="case__thumb" type="button" aria-pressed="false" data-src="lobby-sandfarget-volum" data-w="800" data-h="599" data-alt="Skråstilt veggvolum i lobbyen, jevnt malt i lys sand rundt et stort innfelt vindu." data-caption="Ferdig: skråflatene krever jevn påføring for å unngå skjolder i sidelys.">
+                  <img src="assets/img/lobby-sandfarget-volum-480.webp" width="480" height="359" loading="lazy" alt="">
+                  <span class="visually-hidden">Vis bilde 2</span></button></li>
+                <li><button class="case__thumb" type="button" aria-pressed="false" data-src="lobby-gronn-vegg-sofagruppe" data-w="800" data-h="599" data-alt="Lang vegg i fellesarealet malt i salviegrønt, med sittegruppe og søyle i forgrunnen." data-caption="Ferdig: salviegrønn langvegg i fellesarealet.">
+                  <img src="assets/img/lobby-gronn-vegg-sofagruppe-480.webp" width="480" height="359" loading="lazy" alt="">
+                  <span class="visually-hidden">Vis bilde 3</span></button></li>
+              </ul>
             </div>
+            <div class="case__body">
+              <p class="case__tags"><span class="tag">Malerarbeid</span><span class="tag">Næringsbygg</span></p>
+              <h3 class="case__title">Fellesarealer i næringsbygg</h3>
+              <p>Store veggflater og et skråstilt volum i lobbyen fikk nye farger: lys sand og en dempet oliven, som varmer opp et rom med mye glass og stein.</p>
+              <dl class="case__facts">
+                <div><dt>Omfang</dt><dd>Vegger og veggvolum i lobby og fellesareal</dd></div>
+                <div><dt>Farger</dt><dd>Lys sand, oliven, salviegrønn</dd></div>
+                <div><dt>Utfordring</dt><dd>Store flater og skrå vinkler med sterkt sidelys</dd></div>
+              </dl>
+              <p class="case__caption" data-case-caption aria-live="polite">Ferdig: sand og oliven møtes i hjørnet.</p>
+            </div>
+          </article>
+
+          <!-- Case 2 -->
+          <article class="case case--flip" data-case>
+            <div class="case__gallery">
+              <button class="case__main" type="button" data-case-open aria-label="Forstørr bildet">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/kjokken-maling-oversikt-800.webp 800w, assets/img/kjokken-maling-oversikt-1200.webp 1200w" sizes="(min-width: 1024px) 640px, 100vw" data-case-source>
+                  <img src="assets/img/kjokken-maling-oversikt-800.jpg" width="800" height="599" loading="lazy" decoding="async" data-case-img
+                       alt="Kjøkken med mørke fronter under maling: veggene er nymalt i varm grågrønn, benkeplaten er dekket med plast.">
+                </picture>
+                <span class="case__zoom" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
+              </button>
+              <ul class="case__thumbs" aria-label="Flere bilder fra oppdraget">
+                <li><button class="case__thumb" type="button" aria-pressed="true" data-src="kjokken-maling-oversikt" data-w="800" data-h="599" data-alt="Kjøkken med mørke fronter under maling: veggene er nymalt i varm grågrønn, benkeplaten er dekket med plast." data-caption="Underveis: nymalte vegger, benk og gulv fortsatt tildekket.">
+                  <img src="assets/img/kjokken-maling-oversikt-480.webp" width="480" height="359" loading="lazy" alt="">
+                  <span class="visually-hidden">Vis bilde 1</span></button></li>
+                <li><button class="case__thumb" type="button" aria-pressed="false" data-src="kjokken-maling-tildekket" data-w="800" data-h="600" data-alt="Nærbilde av kjøkkenvegg under overskap: tape langs skap og benk, plast over benkeplaten og arbeidslampe." data-caption="Underveis: tape og plast langs alle skap og benker gir skarpe linjer og null søl.">
+                  <img src="assets/img/kjokken-maling-tildekket-480.webp" width="480" height="360" loading="lazy" alt="">
+                  <span class="visually-hidden">Vis bilde 2</span></button></li>
+              </ul>
+            </div>
+            <div class="case__body">
+              <p class="case__tags"><span class="tag">Malerarbeid</span><span class="tag">Bolig</span></p>
+              <h3 class="case__title">Kjøkken med mørke fronter</h3>
+              <p>Veggene fikk en varm grågrønn som spiller på lag med de mørke frontene. Bildene er tatt midt i jobben, og viser hvordan vi jobber i et hjem som er i bruk.</p>
+              <dl class="case__facts">
+                <div><dt>Omfang</dt><dd>Vegger i kjøkken og spiseplass</dd></div>
+                <div><dt>Beskyttelse</dt><dd>Benkeplater, gulv og vinduer dekket til før start</dd></div>
+                <div><dt>Detalj</dt><dd>Skarpe linjer mot overskap og tak</dd></div>
+              </dl>
+              <p class="case__caption" data-case-caption aria-live="polite">Underveis: nymalte vegger, benk og gulv fortsatt tildekket.</p>
+            </div>
+          </article>
+
+          <!-- Case 3 -->
+          <article class="case" data-case>
+            <div class="case__gallery">
+              <button class="case__main" type="button" data-case-open aria-label="Forstørr bildet">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/underlag-flekksparklet-800.webp 800w, assets/img/underlag-flekksparklet-1200.webp 1200w" sizes="(min-width: 1024px) 640px, 100vw" data-case-source>
+                  <img src="assets/img/underlag-flekksparklet-800.jpg" width="800" height="600" loading="lazy" decoding="async" data-case-img
+                       alt="Rom under oppussing: grå vegger med hvite sparkelflekker over skjøter og hull, gipsplater og en gardintrapp.">
+                </picture>
+                <span class="case__zoom" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
+              </button>
+              <ul class="case__thumbs" aria-label="Flere bilder fra oppdraget">
+                <li><button class="case__thumb" type="button" aria-pressed="true" data-src="underlag-flekksparklet" data-w="800" data-h="600" data-alt="Rom under oppussing: grå vegger med hvite sparkelflekker over skjøter og hull, gipsplater og en gardintrapp." data-caption="Steg 1: hull og skjøter flekksparkles og slipes.">
+                  <img src="assets/img/underlag-flekksparklet-480.webp" width="480" height="360" loading="lazy" alt="">
+                  <span class="visually-hidden">Vis bilde 1</span></button></li>
+                <li><button class="case__thumb" type="button" aria-pressed="false" data-src="helsparkling-start" data-w="800" data-h="905" data-alt="Håndverker starter helsparkling av en vegg. Halve flaten har fått et tynt lag sparkel." data-caption="Steg 2: hele flaten får et tynt lag sparkel.">
+                  <img src="assets/img/helsparkling-start-480.webp" width="480" height="543" loading="lazy" alt="">
+                  <span class="visually-hidden">Vis bilde 2</span></button></li>
+                <li><button class="case__thumb" type="button" aria-pressed="false" data-src="helsparkling-arbeid" data-w="800" data-h="891" data-alt="Håndverker strekker seg opp mot taket og drar sparkel over veggen med stålbrett." data-caption="Steg 2: sparkelen dras helt opp mot taket, så overgangen blir ren.">
+                  <img src="assets/img/helsparkling-arbeid-480.webp" width="480" height="535" loading="lazy" alt="">
+                  <span class="visually-hidden">Vis bilde 3</span></button></li>
+              </ul>
+            </div>
+            <div class="case__body">
+              <p class="case__tags"><span class="tag">Sparkling</span><span class="tag">Bolig</span></p>
+              <h3 class="case__title">Fra ujevnt underlag til malingsklar vegg</h3>
+              <p>Maling skjuler ingenting, den forsterker ujevnheter. Derfor helsparkler vi når veggen trenger det, i stedet for å male rett på.</p>
+              <dl class="case__facts">
+                <div><dt>Omfang</dt><dd>Flekk- og helsparkling av vegger og tak</dd></div>
+                <div><dt>Resultat</dt><dd>Jevn flate uten synlige skjøter, også i skrått lys</dd></div>
+                <div><dt>Neste steg</dt><dd>Sliping, grunning og to strøk maling</dd></div>
+              </dl>
+              <p class="case__caption" data-case-caption aria-live="polite">Steg 1: hull og skjøter flekksparkles og slipes.</p>
+            </div>
+          </article>
+
+          <!-- Case 4 -->
+          <article class="case case--flip" data-case>
+            <div class="case__gallery">
+              <button class="case__main" type="button" data-case-open aria-label="Forstørr bildet">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/soverom-brun-vegg-800.webp 800w, assets/img/soverom-brun-vegg-1200.webp 1200w" sizes="(min-width: 1024px) 640px, 100vw" data-case-source>
+                  <img src="assets/img/soverom-brun-vegg-800.jpg" width="800" height="599" loading="lazy" decoding="async" data-case-img
+                       alt="Soveromsvegg nymalt i dyp rødbrun, med tape langs tak og gulv og en malingsspann på tildekket gulv.">
+                </picture>
+                <span class="case__zoom" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
+              </button>
+              <ul class="case__thumbs" aria-label="Flere bilder fra oppdragene">
+                <li><button class="case__thumb" type="button" aria-pressed="true" data-src="soverom-brun-vegg" data-w="800" data-h="599" data-alt="Soveromsvegg nymalt i dyp rødbrun, med tape langs tak og gulv og en malingsspann på tildekket gulv." data-caption="Bolig: rødbrun vegg på soverommet, rett etter siste strøk.">
+                  <img src="assets/img/soverom-brun-vegg-480.webp" width="480" height="359" loading="lazy" alt="">
+                  <span class="visually-hidden">Vis bilde 1</span></button></li>
+                <li><button class="case__thumb" type="button" aria-pressed="false" data-src="kontor-terrakotta-vegg" data-w="800" data-h="1067" data-alt="Frittstående vegg i terrakotta med sort ramme i et kontorbygg med trespiler i taket." data-caption="Næring: frittstående terrakottavegg med sort ramme.">
+                  <img src="assets/img/kontor-terrakotta-vegg-480.webp" width="480" height="640" loading="lazy" alt="">
+                  <span class="visually-hidden">Vis bilde 2</span></button></li>
+              </ul>
+            </div>
+            <div class="case__body">
+              <p class="case__tags"><span class="tag">Dekorasjon</span><span class="tag">Bolig og næring</span></p>
+              <h3 class="case__title">Aksentvegger i jordfarger</h3>
+              <p>Mørke og mettede farger er vakre, men avslører alt. De krever ekstra strøk og jevn rulling for å unngå striper. To oppdrag, samme prinsipp.</p>
+              <dl class="case__facts">
+                <div><dt>Omfang</dt><dd>Enkeltvegger i soverom og kontorlandskap</dd></div>
+                <div><dt>Farger</dt><dd>Rødbrun og terrakotta</dd></div>
+                <div><dt>Detalj</dt><dd>Skarpe kanter mot tak, gulv og stålramme</dd></div>
+              </dl>
+              <p class="case__caption" data-case-caption aria-live="polite">Bolig: rødbrun vegg på soverommet, rett etter siste strøk.</p>
+            </div>
+          </article>
         </div>
+      </div>
     </section>
-    
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h4>Om V.Z</h4>
-                    <p>Vi er en profesjonell entreprenørbedrift som spesialiserer oss på malerarbeid, snekring og dekorasjon. Vårt mål er å levere førsteklasses arbeid til hver eneste kunde.</p>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Hurtiglenker</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home">Hjem</a></li>
-                        <li><a href="#about">Om Oss</a></li>
-                        <li><a href="#services">Tjenester</a></li>
-                        <li><a href="#gallery">Prosjekter</a></li>
-                        <li><a href="#contact">Kontakt</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Tjenester</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Malerarbeid</a></li>
-                        <li><a href="#">Snekkerarbeid</a></li>
-                        <li><a href="#">Dekorasjon</a></li>
-                        <li><a href="#">Renovering</a></li>
-                        <li><a href="#">Rådgivning</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Kontaktinfo</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> Oslo, Norge</p>
-                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+4796828588">+47 968 28 588</a></p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:vz.zenuni@hotmail.com">vz.zenuni@hotmail.com</a></p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 V.Z Entreprenør. Alle rettigheter reservert.</p>
-            </div>
+
+    <!-- ============ OM OSS ============ -->
+    <section class="section section--sand" id="om-oss" aria-labelledby="om-title">
+      <div class="container about">
+        <figure class="about__media">
+          <picture>
+            <source type="image/webp" srcset="assets/img/helsparkling-start-480.webp 480w, assets/img/helsparkling-start-800.webp 800w" sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw">
+            <img src="assets/img/helsparkling-start-800.jpg" srcset="assets/img/helsparkling-start-480.jpg 480w, assets/img/helsparkling-start-800.jpg 800w" sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
+                 width="800" height="905" loading="lazy" decoding="async"
+                 alt="Håndverker i arbeidsklær sparkler en vegg med stålbrett, med skyggen sin kastet på veggen.">
+          </picture>
+        </figure>
+
+        <div class="about__content">
+          <p class="eyebrow"><span class="swatches" aria-hidden="true"></span>Om oss</p>
+          <h2 class="section-title" id="om-title">Et lite firma med kort vei til den som gjør jobben</h2>
+          <p class="section-lead">V.Z Entreprenør er et Oslo-basert maler- og snekkerfirma. Når du ringer oss, snakker du med de som faktisk står på stigen, ikke med et kundesenter.</p>
+
+          <ul class="values">
+            <li class="values__item">
+              <h3 class="values__title">Forarbeidet er jobben</h3>
+              <p>Et godt malingsresultat avgjøres før første strøk. Vi setter av tid til sparkling, sliping og grunning, og det står i tilbudet.</p>
+            </li>
+            <li class="values__item">
+              <!-- BEKREFT: leverandør -->
+              <h3 class="values__title">Profesjonelle produkter</h3>
+              <p>Vi bruker maling og sparkel fra anerkjente produsenter som Flügger, og velger glans og slitestyrke etter rommet.</p>
+            </li>
+            <li class="values__item">
+              <h3 class="values__title">Ryddig fra dag én</h3>
+              <p>Møbler, gulv og innredning dekkes til før vi starter. Vi rydder hver dag og tar med oss avfall og malingsrester når vi går.</p>
+            </li>
+            <li class="values__item is-placeholder">
+              <!-- BEKREFT: ansvarsforsikring -->
+              <h3 class="values__title">Forsikret og registrert</h3>
+              <p>Registrert i Foretaksregisteret og Merverdiavgiftsregisteret, og ansvarsforsikret for arbeidet vi utfører.</p>
+            </li>
+          </ul>
         </div>
-    </footer>
-    
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const closeMenuBtn = document.querySelector('.close-menu');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const overlay = document.querySelector('.overlay');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        closeMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-        
-        overlay.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-        
-        // Close mobile menu when clicking on a link
-        const mobileLinks = document.querySelectorAll('.mobile-nav a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-        
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Animation on scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const fadeInOnScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        };
-        
-        window.addEventListener('scroll', fadeInOnScroll);
-        window.addEventListener('load', fadeInOnScroll);
-    </script>
+      </div>
+    </section>
+
+    <!-- ============ OMTALER ============ -->
+    <!--
+      PLASSHOLDERE: Disse omtalene er eksempler. Bytt dem ut med ekte omtaler
+      (med kundens tillatelse), og fjern class="is-placeholder" fra hver <figure>.
+      Publiser aldri oppdiktede omtaler som ekte.
+    -->
+    <section class="section" id="omtaler" aria-labelledby="omtaler-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow"><span class="swatches" aria-hidden="true"></span>Omtaler</p>
+          <h2 class="section-title" id="omtaler-title">Hva kundene sier</h2>
+        </header>
+
+        <div class="reviews">
+          <figure class="review is-placeholder">
+            <svg class="review__mark" aria-hidden="true"><use href="#i-quote"/></svg>
+            <blockquote class="review__quote">
+              <p>De kom på befaring dagen etter at jeg ringte, og tilbudet var så detaljert at jeg visste nøyaktig hva jeg betalte for. Stuen ble ferdig på dagen som var avtalt.</p>
+            </blockquote>
+            <figcaption class="review__by">
+              <span class="review__name">Kari N.</span>
+              <span class="review__meta">Maling av stue og gang · Nordstrand</span>
+            </figcaption>
+          </figure>
+
+          <figure class="review is-placeholder">
+            <svg class="review__mark" aria-hidden="true"><use href="#i-quote"/></svg>
+            <blockquote class="review__quote">
+              <p>Vi hadde folk i leiligheten hele tiden, men det var ryddig hver kveld. Veggene er helt glatte nå. Jeg ser ingen skjøter selv når solen står lavt.</p>
+            </blockquote>
+            <figcaption class="review__by">
+              <span class="review__name">Anders og Mia L.</span>
+              <span class="review__meta">Helsparkling og maling · Grünerløkka</span>
+            </figcaption>
+          </figure>
+
+          <figure class="review is-placeholder">
+            <svg class="review__mark" aria-hidden="true"><use href="#i-quote"/></svg>
+            <blockquote class="review__quote">
+              <p>Vi trengte nye skillevegger og maling i kontoret på kort varsel. Én kontaktperson for både snekker og maler gjorde det enkelt for oss.</p>
+            </blockquote>
+            <figcaption class="review__by">
+              <span class="review__name">Daglig leder, regnskapskontor</span>
+              <span class="review__meta">Skillevegger og maling · Oslo sentrum</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section section--sand" id="sporsmal" aria-labelledby="faq-title">
+      <div class="container faq">
+        <header class="section-head faq__head">
+          <p class="eyebrow"><span class="swatches" aria-hidden="true"></span>Spørsmål og svar</p>
+          <h2 class="section-title" id="faq-title">Det folk lurer på før de ringer</h2>
+          <p class="section-lead">Finner du ikke svaret? Ring <a href="tel:+4796828588">968 28 588</a>, så svarer vi med en gang.</p>
+        </header>
+
+        <div class="faq__list">
+          <details class="faq__item">
+            <summary><h3>Hva koster det?</h3><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__answer">
+              <p>Det avhenger av areal, underlag og hvor mye forarbeid som trengs. Etter befaringen får du et skriftlig tilbud med fastpris eller et tydelig timeestimat. Du vet hva jobben koster før vi starter, og ingenting legges til uten at du har godkjent det.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary><h3>Er befaringen virkelig gratis?</h3><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__answer">
+              <!-- BEKREFT -->
+              <p>Ja. Befaring i Oslo og omegn er gratis og uforpliktende. Vi ser på jobben, gir deg råd og sender tilbudet skriftlig. Du bestemmer deg i ditt eget tempo.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary><h3>Hvor lang tid tar en typisk jobb?</h3><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__answer">
+              <!-- BEKREFT: tidsestimater -->
+              <p>Et soverom med god overflate males normalt på 1–2 dager. Trengs det sparkling, må hvert lag tørke, så regn med 3–5 dager. En hel leilighet tar ofte 1–3 uker. Du får en tidsplan sammen med tilbudet.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary><h3>Må jeg flytte møbler og rydde selv?</h3><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__answer">
+              <p>Nei. Vi flytter og dekker til møbler, legger papp eller plast på gulvet og tar ned det som henger på veggene. Vi rydder hver dag, og når jobben er ferdig tar vi med oss avfall og malingsrester.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary><h3>Kan vi bo hjemme mens dere jobber?</h3><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__answer">
+              <p>Som regel, ja. Vi bruker lavemitterende vannbasert maling i boliger og jobber rom for rom, så resten av hjemmet kan brukes. Vi avtaler arbeidstider som passer deg.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary><h3>Hva om jeg ikke er fornøyd?</h3><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__answer">
+              <p>Da retter vi det. Vi går gjennom resultatet sammen med deg på ferdigbefaringen. Som forbruker har du i tillegg inntil 5 års reklamasjonsrett på arbeid på bolig etter håndverkertjenesteloven.</p>
+            </div>
+          </details>
+          <details class="faq__item">
+            <summary><h3>Tar dere små jobber?</h3><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__answer">
+              <p>Ja. Vi tar alt fra én vegg eller en dør som skal monteres, til hele leiligheter og næringslokaler.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ KONTAKT ============ -->
+    <section class="section contact" id="kontakt" aria-labelledby="kontakt-title">
+      <div class="container contact__grid">
+        <div class="contact__intro">
+          <p class="eyebrow"><span class="swatches" aria-hidden="true"></span>Kontakt</p>
+          <h2 class="section-title" id="kontakt-title">Bestill gratis befaring</h2>
+          <!-- BEKREFT: svartid -->
+          <p class="section-lead">Fortell kort hva du vil ha gjort. Vi svarer innen én virkedag for å avtale et tidspunkt som passer.</p>
+
+          <ul class="contact__channels">
+            <li>
+              <a class="channel" href="tel:+4796828588">
+                <span class="channel__icon" aria-hidden="true"><svg class="icon"><use href="#i-phone"/></svg></span>
+                <span><span class="channel__label">Ring oss</span><span class="channel__value">+47 968 28 588</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="channel" href="mailto:vz.zenuni@hotmail.com">
+                <span class="channel__icon" aria-hidden="true"><svg class="icon"><use href="#i-mail"/></svg></span>
+                <span><span class="channel__label">Send e-post</span><span class="channel__value">vz.zenuni@hotmail.com</span></span>
+              </a>
+            </li>
+            <li>
+              <div class="channel channel--static">
+                <span class="channel__icon" aria-hidden="true"><svg class="icon"><use href="#i-pin"/></svg></span>
+                <span><span class="channel__label">Område</span><span class="channel__value">Oslo og omegn</span></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!--
+          Skjemaet sendes via FormSubmit (formsubmit.co) med fetch/AJAX.
+          Uten JavaScript faller det tilbake til vanlig POST og videresending til takk.html.
+          NB: Første innsending sender en aktiveringse-post til adressen under. Den må bekreftes én gang.
+        -->
+        <form class="form" action="https://formsubmit.co/vz.zenuni@hotmail.com" method="POST" novalidate data-contact-form>
+          <input type="hidden" name="_subject" value="Ny forespørsel fra nettsiden">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://qkarpuzi.github.io/V.Z-Entreprenor/takk.html">
+          <!-- Honningkrukke mot spam: skjult for mennesker, bots fyller den ut -->
+          <div class="form__honey" aria-hidden="true">
+            <label for="f-honey">La dette feltet stå tomt</label>
+            <input type="text" id="f-honey" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
+
+          <h3 class="form__title">Send forespørsel</h3>
+          <p class="form__hint">Felt merket <span aria-hidden="true">*</span><span class="visually-hidden">med stjerne</span> må fylles ut.</p>
+
+          <div class="form__row">
+            <div class="field">
+              <label class="field__label" for="f-name">Navn <span aria-hidden="true">*</span></label>
+              <input class="field__input" type="text" id="f-name" name="navn" autocomplete="name" required minlength="2" maxlength="100" aria-describedby="f-name-err">
+              <p class="field__error" id="f-name-err" data-error-for="f-name"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="f-phone">Telefon <span aria-hidden="true">*</span></label>
+              <input class="field__input" type="tel" id="f-phone" name="telefon" autocomplete="tel" inputmode="tel" required pattern="^\+?[0-9\s]{8,15}$" aria-describedby="f-phone-err">
+              <p class="field__error" id="f-phone-err" data-error-for="f-phone"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="f-email">E-post <span aria-hidden="true">*</span></label>
+            <input class="field__input" type="email" id="f-email" name="email" autocomplete="email" required maxlength="150" aria-describedby="f-email-err">
+            <p class="field__error" id="f-email-err" data-error-for="f-email"></p>
+          </div>
+
+          <div class="form__row">
+            <div class="field">
+              <label class="field__label" for="f-service">Hva gjelder det?</label>
+              <select class="field__input field__input--select" id="f-service" name="tjeneste">
+                <option value="">Velg tjeneste</option>
+                <option>Malerarbeid</option>
+                <option>Snekkerarbeid</option>
+                <option>Dekorasjon og fargeråd</option>
+                <option>Flere av delene</option>
+                <option>Annet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="f-area">Bydel eller sted</label>
+              <input class="field__input" type="text" id="f-area" name="sted" autocomplete="address-level2" maxlength="80" placeholder="F.eks. Nordstrand">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="f-message">Beskriv jobben <span aria-hidden="true">*</span></label>
+            <textarea class="field__input field__input--textarea" id="f-message" name="melding" rows="5" required minlength="10" maxlength="3000" aria-describedby="f-message-help f-message-err"></textarea>
+            <p class="field__help" id="f-message-help">For eksempel: hvilke rom, omtrentlig størrelse og når du ønsker oppstart.</p>
+            <p class="field__error" id="f-message-err" data-error-for="f-message"></p>
+          </div>
+
+          <p class="form__privacy">Vi bruker opplysningene bare til å svare på henvendelsen din, og deler dem ikke med andre.</p>
+
+          <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
+            <span class="btn__label">Send forespørsel</span>
+            <span class="btn__spinner" aria-hidden="true"></span>
+          </button>
+
+          <div class="form__status" role="status" aria-live="polite" tabindex="-1" data-form-status hidden></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__brand">
+          <a class="brand brand--light" href="#top">
+            <img class="brand__mark" src="assets/img/logo-mark-48.png" srcset="assets/img/logo-mark-96.png 2x" width="150" height="48" alt="" loading="lazy">
+            <span class="brand__text">
+              <span class="brand__name">V.Z Entreprenør</span>
+              <span class="brand__tag">Maler &amp; snekker · Oslo</span>
+            </span>
+          </a>
+          <p>Sparkling, maling og snekkerarbeid for boliger og næringslokaler i Oslo og omegn.</p>
+          <a class="btn btn--primary btn--sm" href="#kontakt">Bestill gratis befaring</a>
+        </div>
+
+        <nav class="site-footer__col" aria-labelledby="footer-services">
+          <h2 class="site-footer__title" id="footer-services">Tjenester</h2>
+          <ul>
+            <li><a href="#malerarbeid">Malerarbeid</a></li>
+            <li><a href="#malerarbeid">Sparkling</a></li>
+            <li><a href="#snekkerarbeid">Snekkerarbeid</a></li>
+            <li><a href="#dekorasjon">Dekorasjon og fargeråd</a></li>
+          </ul>
+        </nav>
+
+        <nav class="site-footer__col" aria-labelledby="footer-company">
+          <h2 class="site-footer__title" id="footer-company">Firma</h2>
+          <ul>
+            <li><a href="#prosess">Slik jobber vi</a></li>
+            <li><a href="#prosjekter">Prosjekter</a></li>
+            <li><a href="#om-oss">Om oss</a></li>
+            <li><a href="#sporsmal">Spørsmål og svar</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-footer__col">
+          <h2 class="site-footer__title">Kontakt</h2>
+          <address>
+            <ul>
+              <li><a href="tel:+4796828588">+47 968 28 588</a></li>
+              <li><a href="mailto:vz.zenuni@hotmail.com">vz.zenuni@hotmail.com</a></li>
+              <li>Oslo og omegn</li>
+            </ul>
+          </address>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>&copy; <span data-year>2026</span> V.Z Entreprenør · Org.nr. <a href="https://virksomhet.brreg.no/nb/oppslag/enheter/933880834" rel="noopener" target="_blank">933 880 834 MVA<span class="visually-hidden"> (åpnes i ny fane)</span></a></p>
+        <a class="site-footer__top" href="#top">Til toppen <svg class="icon icon--up" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lysboks for prosjektbilder (native <dialog>: fokus og Esc håndteres av nettleseren) -->
+  <dialog class="lightbox" aria-label="Forstørret prosjektbilde" data-lightbox>
+    <form method="dialog">
+      <button class="lightbox__close" type="submit" aria-label="Lukk">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </form>
+    <img class="lightbox__img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" data-lightbox-img>
+    <p class="lightbox__caption" data-lightbox-caption></p>
+  </dialog>
 </body>
 </html>
